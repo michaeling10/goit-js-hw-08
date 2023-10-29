@@ -8,9 +8,34 @@ const messageTextarea = loginForm.elements.message;
 
 getInformationForm();
 
+window.addEventListener('load', function () {
+  getInformationForm();
+});
+
+const saveInformationFormThrottled = throttle(saveInformationForm, 500);
+
 loginForm.addEventListener('input', function (e) {
   e.preventDefault();
-  saveInformationForm();
+  saveInformationFormThrottled();
+});
+
+loginForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  if (emailInput.value.trim() === '' || messageTextarea.value.trim() === '') {
+    alert(
+      'Please enter the complete information before submitting. Check the email address and the message are correct.'
+    );
+    return;
+  } else {
+    alert('This form has been successfully submitted!');
+  }
+
+  console.log('Email : ' + emailInput.value);
+  console.log('Message : ' + messageTextarea.value);
+
+  loginForm.reset();
+  localStorage.removeItem('feedback-form-state');
 });
 
 function saveInformationForm() {
