@@ -24,7 +24,7 @@ loginForm.addEventListener('submit', function (e) {
 
   if (emailInput.value.trim() === '' || messageTextarea.value.trim() === '') {
     alert(
-      'Please enter the complete information before submitting. Check the email address and the message are correct.'
+      'Please enter the complete information before submitting. Check if the email address and the message are correct.'
     );
     return;
   } else {
